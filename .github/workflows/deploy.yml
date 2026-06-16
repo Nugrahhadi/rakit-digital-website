@@ -1,0 +1,27 @@
+name: Deploy Rakit Digital to Hostinger
+
+on:
+  push:
+    branches:
+      - main # Jalankan CI/CD setiap ada push ke branch main
+
+jobs:
+  web-deploy:
+    name: Deploying via FTP
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v4
+    
+    - name: Sync files to Hostinger
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /public_html/ # Target folder di Hostinger
+        # Jika ada file/folder di github yang tidak ingin diupload ke hosting, daftarkan di bawah ini:
+        exclude: |
+          **/.git*
+          **/.git*/**
+          README.md
