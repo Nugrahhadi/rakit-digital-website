@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { translations } from "../utils/translations";
 
-export default function Footer() {
+interface FooterProps {
+  lang: "id" | "en";
+}
+
+export default function Footer({ lang }: FooterProps) {
+  const t = translations.footer;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -26,7 +32,7 @@ export default function Footer() {
               />
             </a>
             <p className="text-xs md:text-sm text-cream/70 font-semibold leading-relaxed max-w-sm">
-              An attractive, cheerful, and highly capable digital production agency. We assemble premium websites, mobile applications, and custom inventory solutions.
+              {t.slogan[lang]}
             </p>
             <div className="text-xs text-cream/40 font-bold mt-2">
               <p>Serang, Banten</p>
@@ -36,24 +42,25 @@ export default function Footer() {
 
           {/* Column 2: Services Sitemap */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="font-extrabold text-xs text-vibrant-orange uppercase tracking-wider">Services</h4>
+            <h4 className="font-extrabold text-xs text-vibrant-orange uppercase tracking-wider">{t.servicesHeader[lang]}</h4>
             <div className="flex flex-col gap-2.5 text-xs md:text-sm font-semibold text-cream/70">
-              <a href="#services" className="hover:text-vibrant-orange transition-colors">Company Profiles</a>
-              <a href="#services" className="hover:text-vibrant-orange transition-colors">LMS training</a>
-              <a href="#services" className="hover:text-vibrant-orange transition-colors">Web Applications</a>
-              <a href="#services" className="hover:text-vibrant-orange transition-colors">Commerce Booking</a>
+              {t.services.map((item, idx) => (
+                <a key={idx} href="#services" className="hover:text-vibrant-orange transition-colors">
+                  {item[lang]}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Column 3: Legal & Resource Sitemap */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="font-extrabold text-xs text-vibrant-orange uppercase tracking-wider">Company</h4>
+            <h4 className="font-extrabold text-xs text-vibrant-orange uppercase tracking-wider">{t.companyHeader[lang]}</h4>
             <div className="flex flex-col gap-2.5 text-xs md:text-sm font-semibold text-cream/70">
-              <a href="#portfolio" className="hover:text-vibrant-orange transition-colors">Our Works</a>
-              <a href="#pricing" className="hover:text-vibrant-orange transition-colors">Pricing Plans</a>
-              <a href="#testimonials" className="hover:text-vibrant-orange transition-colors">Client Reviews</a>
+              <a href="#portfolio" className="hover:text-vibrant-orange transition-colors">{t.company[0][lang]}</a>
+              <a href="#pricing" className="hover:text-vibrant-orange transition-colors">{t.company[1][lang]}</a>
+              <a href="#testimonials" className="hover:text-vibrant-orange transition-colors">{t.company[2][lang]}</a>
               <a href="#" className="hover:text-vibrant-orange transition-colors flex items-center gap-1">
-                Careers <span className="bg-vibrant-orange/15 text-vibrant-orange text-[9px] px-1.5 py-0.5 rounded font-black">Hiring</span>
+                {t.company[3][lang]} <span className="bg-vibrant-orange/15 text-vibrant-orange text-[9px] px-1.5 py-0.5 rounded font-black">{t.hiring[lang]}</span>
               </a>
             </div>
           </div>
@@ -67,12 +74,12 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between text-xs font-bold text-cream/40 gap-4">
           <div className="flex items-center gap-1">
             <span>© {currentYear} Rakit Digital.</span>
-            <span>All rights reserved.</span>
+            <span>{t.rights[lang]}</span>
           </div>
 
           <div className="flex gap-6">
-            <a href="#" className="hover:text-cream transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-cream transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-cream transition-colors">{t.privacy[lang]}</a>
+            <a href="#" className="hover:text-cream transition-colors">{t.terms[lang]}</a>
           </div>
         </div>
       </div>

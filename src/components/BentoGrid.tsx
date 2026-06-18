@@ -9,8 +9,14 @@ import {
   ArrowUpRight,
   Package
 } from "lucide-react";
+import { translations } from "../utils/translations";
 
-export default function BentoGrid() {
+interface BentoGridProps {
+  lang: "id" | "en";
+}
+
+export default function BentoGrid({ lang }: BentoGridProps) {
+  const t = translations.bento;
   return (
     <section id="services" className="py-24 px-6 bg-transparent relative overflow-hidden">
       {/* Background decoration */}
@@ -19,13 +25,13 @@ export default function BentoGrid() {
       <div className="w-full max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-20">
           <h2 className="text-sm font-extrabold tracking-widest text-rakit-blue uppercase mb-2">
-            WHAT WE HANDLE
+            {t.label[lang]}
           </h2>
           <h3 className="text-3xl md:text-5xl font-black text-rakit-dark leading-tight">
-            We assemble systems that <span className="text-rakit-orange">scale</span>.
+            {t.titlePre[lang]}<span className="text-rakit-orange">{t.titlePost[lang]}</span>
           </h3>
           <p className="text-rakit-dark/70 mt-4 font-semibold">
-            Every product is hand-crafted with rich UX micro-interactions for optimal customer delight.
+            {t.description[lang]}
           </p>
         </div>
 
@@ -47,11 +53,11 @@ export default function BentoGrid() {
                     <Sparkles className="w-6 h-6 text-rakit-orange" />
                   </div>
                   <div>
-                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">Company Profile</h4>
-                    <p className="text-xs font-bold text-rakit-blue mt-1 uppercase tracking-wider">Modern Brand Representation</p>
+                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">{t.cards.compro.title[lang]}</h4>
+                    <p className="text-xs font-bold text-rakit-blue mt-1 uppercase tracking-wider">{t.cards.compro.subtitle[lang]}</p>
                   </div>
                   <p className="text-sm text-rakit-dark/70 font-medium leading-relaxed">
-                    Assembled with premium layouts, smooth animations, and high-converting storytelling mechanics.
+                    {t.cards.compro.description[lang]}
                   </p>
                 </div>
               </div>
@@ -94,8 +100,11 @@ export default function BentoGrid() {
                     <GraduationCap className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">LMS Systems</h4>
-                    <p className="text-xs font-bold text-rakit-blue mt-0.5 uppercase tracking-wider">Interactive Learning Platforms</p>
+                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">{t.cards.lms.title[lang]}</h4>
+                    <p className="text-xs font-bold text-rakit-blue mt-0.5 uppercase tracking-wider">{t.cards.lms.subtitle[lang]}</p>
+                    <p className="text-xs text-rakit-dark/75 font-semibold leading-relaxed mt-2.5">
+                      {t.cards.lms.description[lang]}
+                    </p>
                   </div>
                 </div>
                 <div className="w-10 h-10 rounded-full border border-rakit-dark/10 flex items-center justify-center text-rakit-dark group-hover:bg-rakit-dark group-hover:text-rakit-cream transition-all duration-300">
@@ -140,8 +149,11 @@ export default function BentoGrid() {
                     <Laptop className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">Web Application</h4>
-                    <p className="text-xs font-bold text-rakit-orange mt-0.5 uppercase tracking-wider">Complex Dashboards & Tools</p>
+                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">{t.cards.webapp.title[lang]}</h4>
+                    <p className="text-xs font-bold text-rakit-orange mt-0.5 uppercase tracking-wider">{t.cards.webapp.subtitle[lang]}</p>
+                    <p className="text-xs text-rakit-dark/75 font-semibold leading-relaxed mt-2.5">
+                      {t.cards.webapp.description[lang]}
+                    </p>
                   </div>
                 </div>
                 <div className="w-10 h-10 rounded-full border border-rakit-dark/10 flex items-center justify-center text-rakit-dark group-hover:bg-rakit-dark group-hover:text-rakit-cream transition-all duration-300">
@@ -202,11 +214,11 @@ export default function BentoGrid() {
                     <Package className="w-6 h-6 text-rakit-orange" />
                   </div>
                   <div>
-                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">Commerce & Rent</h4>
-                    <p className="text-xs font-bold text-rakit-blue mt-1 uppercase tracking-wider">Inventory & Booking Solutions</p>
+                    <h4 className="font-black text-2xl text-rakit-dark tracking-tight">{t.cards.commerce.title[lang]}</h4>
+                    <p className="text-xs font-bold text-rakit-blue mt-1 uppercase tracking-wider">{t.cards.commerce.subtitle[lang]}</p>
                   </div>
                   <p className="text-sm text-rakit-dark/70 font-medium leading-relaxed">
-                    High-tier architecture built securely to scale booking systems, financial transparency, and stock management.
+                    {t.cards.commerce.description[lang]}
                   </p>
                 </div>
               </div>

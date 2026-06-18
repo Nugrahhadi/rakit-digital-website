@@ -4,8 +4,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Sparkles, Code, Layout, Rocket } from "lucide-react";
 import { Magnetic } from "./Navbar";
+import { translations } from "../utils/translations";
 
-export default function Hero() {
+interface HeroProps {
+  lang: "id" | "en";
+}
+
+export default function Hero({ lang }: HeroProps) {
+  const t = translations.hero;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -183,23 +190,33 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary border border-primary/10 rounded-full w-fit font-semibold text-xs md:text-sm"
             >
               <Sparkles className="w-4 h-4 text-vibrant-orange animate-pulse" />
-              <span>Digital Production Agency</span>
+              <span>{t.label[lang]}</span>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
               className="text-4xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-primary"
             >
-              We <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Rakit</span> Your <br />
-              Digital Dreams Into <br />
-              <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-8">Premium Systems</span>
+              {lang === "id" ? (
+                <>
+                  Kami <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Merakit</span> <br />
+                  Mimpi Digital Anda Menjadi <br />
+                  <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-8">Sistem Premium</span>
+                </>
+              ) : (
+                <>
+                  We <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Rakit</span> Your <br />
+                  Digital Dreams Into <br />
+                  <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-8">Premium Systems</span>
+                </>
+              )}
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="text-base md:text-lg text-primary/80 max-w-lg leading-relaxed font-medium"
             >
-              Rakit Digital is an attractive, cheerful, and highly capable digital production studio. We assemble code, design, and user experience to build premium digital assets.
+              {t.description[lang]}
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 mt-2">
@@ -208,7 +225,7 @@ export default function Hero() {
                   href="#portfolio"
                   className="group flex items-center gap-2 bg-vibrant-orange hover:bg-primary text-cream px-7 py-3.5 rounded-full font-extrabold text-base transition-colors duration-300 shadow-md shadow-vibrant-orange/20"
                 >
-                  <span>View Showcase</span>
+                  <span>{t.ctaPrimary[lang]}</span>
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </Magnetic>
@@ -217,7 +234,7 @@ export default function Hero() {
                 href="#services"
                 className="group flex items-center gap-2 bg-primary/5 hover:bg-primary/10 text-primary border border-primary/10 px-6 py-3.5 rounded-full font-bold text-base transition-colors duration-300"
               >
-                <span>Our Services</span>
+                <span>{t.ctaSecondary[lang]}</span>
               </a>
             </motion.div>
 
@@ -228,15 +245,15 @@ export default function Hero() {
             >
               <div>
                 <p className="text-3xl font-black text-primary">50+</p>
-                <p className="text-xs md:text-sm font-semibold text-primary/60">Projects Built</p>
+                <p className="text-xs md:text-sm font-semibold text-primary/60">{t.statsProjects[lang]}</p>
               </div>
               <div>
                 <p className="text-3xl font-black text-primary">99%</p>
-                <p className="text-xs md:text-sm font-semibold text-primary/60">Happy Clients</p>
+                <p className="text-xs md:text-sm font-semibold text-primary/60">{t.statsClients[lang]}</p>
               </div>
               <div>
                 <p className="text-3xl font-black text-primary">24/7</p>
-                <p className="text-xs md:text-sm font-semibold text-primary/60">Support & Care</p>
+                <p className="text-xs md:text-sm font-semibold text-primary/60">{t.statsSupport[lang]}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -256,13 +273,23 @@ export default function Hero() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/5 text-primary border border-primary/10 rounded-full w-fit font-semibold text-xs">
               <Sparkles className="w-3.5 h-3.5 text-vibrant-orange animate-pulse" />
-              <span>Digital Production Agency</span>
+              <span>{t.label[lang]}</span>
             </div>
 
             <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.1] tracking-tight text-primary">
-              We <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Rakit</span> Your <br />
-              Digital Dreams Into <br />
-              <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-6">Premium Systems</span>
+              {lang === "id" ? (
+                <>
+                  Kami <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Merakit</span> <br />
+                  Mimpi Digital Anda Menjadi <br />
+                  <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-6">Sistem Premium</span>
+                </>
+              ) : (
+                <>
+                  We <span className="bg-gradient-to-r from-vibrant-orange to-accent-blue bg-clip-text text-transparent">Rakit</span> Your <br />
+                  Digital Dreams Into <br />
+                  <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-6">Premium Systems</span>
+                </>
+              )}
             </h1>
           </motion.div>
 
@@ -276,7 +303,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="text-sm md:text-base text-primary/80 font-medium leading-relaxed mt-2"
           >
-            Rakit Digital is an attractive, cheerful, and highly capable digital production studio. We assemble code, design, and user experience to build premium digital assets.
+            {t.description[lang]}
           </motion.p>
 
           {/* Buttons (Order 4) */}
@@ -290,7 +317,7 @@ export default function Hero() {
               href="#portfolio"
               className="group flex items-center gap-2 bg-vibrant-orange hover:bg-primary text-cream px-5 py-3 rounded-full font-extrabold text-sm transition-colors duration-300 shadow-md shadow-vibrant-orange/10"
             >
-              <span>View Showcase</span>
+              <span>{t.ctaPrimary[lang]}</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
@@ -298,7 +325,7 @@ export default function Hero() {
               href="#services"
               className="group flex items-center gap-2 bg-primary/5 hover:bg-primary/10 text-primary border border-primary/10 px-5 py-3 rounded-full font-bold text-sm transition-colors duration-300"
             >
-              <span>Our Services</span>
+              <span>{t.ctaSecondary[lang]}</span>
             </a>
           </motion.div>
 
@@ -311,15 +338,15 @@ export default function Hero() {
           >
             <div>
               <p className="text-2xl font-black text-primary">50+</p>
-              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">Projects Built</p>
+              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">{t.statsProjects[lang]}</p>
             </div>
             <div>
               <p className="text-2xl font-black text-primary">99%</p>
-              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">Happy Clients</p>
+              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">{t.statsClients[lang]}</p>
             </div>
             <div>
               <p className="text-2xl font-black text-primary">24/7</p>
-              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">Support & Care</p>
+              <p className="text-[10px] font-semibold text-primary/60 mt-0.5">{t.statsSupport[lang]}</p>
             </div>
           </motion.div>
 

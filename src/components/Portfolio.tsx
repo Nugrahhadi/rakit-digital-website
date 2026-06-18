@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Monitor, Cpu, X } from "lucide-react";
+import { ArrowUpRight, Monitor, Cpu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { translations } from "../utils/translations";
 
 export type ProjectCategory = "Website" | "Custom System";
 
@@ -18,124 +19,168 @@ export interface Project {
   gallery: string[];
 }
 
-const projectsData: Project[] = [
-  {
-    id: 1,
-    title: "Jannor Coffee",
-    category: "Website",
-    description: "High-conversion premium corporate web application built for Jannor.",
-    longDescription: "Jannor is a premium single-page web app and conversion-optimized landing page designed with fluid responsiveness, modern storytelling structure, and micro-interactions that showcase corporate brand presence elegantly.",
-    tags: ["Next.js", "TailwindCSS", "Framer Motion"],
-    imagePath: "/images/Portfolio/Jannor/jannor1.webp",
-    gallery: [
-      "/images/Portfolio/Jannor/jannor1.webp",
-      "/images/Portfolio/Jannor/jannor2.webp",
-      "/images/Portfolio/Jannor/jannor3.webp",
-      "/images/Portfolio/Jannor/jannor4.webp",
-      "/images/Portfolio/Jannor/jannor5.webp",
-      "/images/Portfolio/Jannor/admin-jannor1.webp",
-      "/images/Portfolio/Jannor/admin-jannor2.webp",
-      "/images/Portfolio/Jannor/admin-jannor3.webp",
-    ]
-  },
-  {
-    id: 2,
-    title: "Guru-Guru Coffee",
-    category: "Website",
-    description: "Interactive educational website providing digital class administration and management.",
-    longDescription: "Guru-Guru is a complete administrative and educational portal designed to streamline digital class management, assignment workflows, and grades tracking. It features an interactive student dashboard and an automated payroll module for staff.",
-    tags: ["React", "PostgreSQL", "TailwindCSS"],
-    imagePath: "/images/Portfolio/Guru-Guru/guru1.webp",
-    gallery: [
-      "/images/Portfolio/Guru-Guru/guru1.webp",
-      "/images/Portfolio/Guru-Guru/guru2.webp",
-      "/images/Portfolio/Guru-Guru/guru3.webp",
-      "/images/Portfolio/Guru-Guru/guru4.webp",
-      "/images/Portfolio/Guru-Guru/guru5.webp",
-      "/images/Portfolio/Guru-Guru/guru6.webp",
-      "/images/Portfolio/Guru-Guru/admin-guru1.webp",
-      "/images/Portfolio/Guru-Guru/admin-guru2.webp",
-      "/images/Portfolio/Guru-Guru/admin-guru3.webp",
-    ]
-  },
-  {
-    id: 3,
-    title: "Archipelago Corporate Site",
-    category: "Website",
-    description: "Minimalist brand representation site presenting travel and heritage locations.",
-    longDescription: "Archipelago is a highly interactive, minimalist brand website showcasing travel destinations, local cultural heritages, and customizable booking systems. Implemented with smooth parallax scrolling and deep animation structures.",
-    tags: ["Next.js", "TypeScript", "TailwindCSS"],
-    imagePath: "/images/Portfolio/Archipelago/archipelago.webp",
-    gallery: [
-      "/images/Portfolio/Archipelago/archipelago.webp"
-    ]
-  },
-  {
-    id: 4,
-    title: "Ricocapital: Crypto Education",
-    category: "Custom System",
-    description: "Interactive custom dashboard and database suite built for capital analytics.",
-    longDescription: "Ricocapital is an advanced asset management dashboard and analytics platform. It provides clients with real-time portfolio visualization, historical growth projections, and transaction history.",
-    tags: ["Next.js", "Redis", "TypeScript"],
-    imagePath: "/images/Portfolio/Ricocapital/Ricocapital.webp",
-    gallery: [
-      "/images/Portfolio/Ricocapital/Ricocapital.webp",
-      "/images/Portfolio/Ricocapital/ricocapital(2).webp",
-      "/images/Portfolio/Ricocapital/ricocapital(3).webp",
-      "/images/Portfolio/Ricocapital/ricocapital(4).webp",
-      "/images/Portfolio/Ricocapital/ricocapital(5).webp",
-      "/images/Portfolio/Ricocapital/ricocapital-admin.webp",
-      "/images/Portfolio/Ricocapital/ricocapital-admin(1).webp",
-      "/images/Portfolio/Ricocapital/ricocapital-admin(2).webp",
-      "/images/Portfolio/Ricocapital/ricocapital-member.webp",
-      "/images/Portfolio/Ricocapital/ricocapital-member(1).webp",
-    ]
-  },
-  {
-    id: 5,
-    title: "Toko-Pinjam Platform",
-    category: "Custom System",
-    description: "Enterprise inventory asset booking scheduler with integrated calendar widget.",
-    longDescription: "Toko-Pinjam is an enterprise-grade equipment booking and reservation scheduler. It integrates automated stock availability checks, reservation logs, and a dynamic calendar interface.",
-    tags: ["React", "Node.js", "GraphQL"],
-    imagePath: "/images/Portfolio/Toko-Pinjam/tokopinjam.webp",
-    gallery: [
-      "/images/Portfolio/Toko-Pinjam/tokopinjam.webp",
-      "/images/Portfolio/Toko-Pinjam/tokopinjam(1).webp",
-      "/images/Portfolio/Toko-Pinjam/tokopinjam(2).webp"
-    ]
-  },
-  {
-    id: 6,
-    title: "Smart Parking Control System",
-    category: "Custom System",
-    description: "Real-time IoT parking monitoring and ticketing custom system.",
-    longDescription: "Smart Parking is a comprehensive dashboard control system that connects directly with IoT devices. It renders real-time parking spot occupancy, sensor diagnostic charts, and gate access logs.",
-    tags: ["Vue 3", "TailwindCSS", "ChartJS"],
-    imagePath: "/images/Portfolio/Smart-Parking/SPS-admin1.webp",
-    gallery: [
-      "/images/Portfolio/Smart-Parking/SPS-admin1.webp",
-      "/images/Portfolio/Smart-Parking/SPS-admin2.webp",
-      "/images/Portfolio/Smart-Parking/SPS-admin3.webp"
-    ]
-  },
-];
+export function getProjectsData(lang: "id" | "en"): Project[] {
+  const t = translations.portfolio.projects;
+  return [
+    {
+      id: 1,
+      title: "Jannor Coffee",
+      category: "Website",
+      description: t.jannor.description[lang],
+      longDescription: t.jannor.longDescription[lang],
+      tags: ["Next.js", "TailwindCSS", "Framer Motion"],
+      imagePath: "/images/Portfolio/Jannor/jannor1.webp",
+      gallery: [
+        "/images/Portfolio/Jannor/jannor1.webp",
+        "/images/Portfolio/Jannor/jannor2.webp",
+        "/images/Portfolio/Jannor/jannor3.webp",
+        "/images/Portfolio/Jannor/jannor4.webp",
+        "/images/Portfolio/Jannor/jannor5.webp",
+        "/images/Portfolio/Jannor/admin-jannor1.webp",
+        "/images/Portfolio/Jannor/admin-jannor2.webp",
+        "/images/Portfolio/Jannor/admin-jannor3.webp",
+      ]
+    },
+    {
+      id: 2,
+      title: "Guru-Guru Coffee",
+      category: "Website",
+      description: t.guru.description[lang],
+      longDescription: t.guru.longDescription[lang],
+      tags: ["React", "PostgreSQL", "TailwindCSS"],
+      imagePath: "/images/Portfolio/Guru-Guru/guru1.webp",
+      gallery: [
+        "/images/Portfolio/Guru-Guru/guru1.webp",
+        "/images/Portfolio/Guru-Guru/guru2.webp",
+        "/images/Portfolio/Guru-Guru/guru3.webp",
+        "/images/Portfolio/Guru-Guru/guru4.webp",
+        "/images/Portfolio/Guru-Guru/guru5.webp",
+        "/images/Portfolio/Guru-Guru/guru6.webp",
+        "/images/Portfolio/Guru-Guru/admin-guru1.webp",
+        "/images/Portfolio/Guru-Guru/admin-guru2.webp",
+        "/images/Portfolio/Guru-Guru/admin-guru3.webp",
+      ]
+    },
+    {
+      id: 3,
+      title: "Archipelago Corporate Site",
+      category: "Website",
+      description: t.archipelago.description[lang],
+      longDescription: t.archipelago.longDescription[lang],
+      tags: ["Next.js", "TypeScript", "TailwindCSS"],
+      imagePath: "/images/Portfolio/Archipelago/archipelago.webp",
+      gallery: [
+        "/images/Portfolio/Archipelago/archipelago.webp"
+      ]
+    },
+    {
+      id: 4,
+      title: "Ricocapital: Crypto Education",
+      category: "Custom System",
+      description: t.rico.description[lang],
+      longDescription: t.rico.longDescription[lang],
+      tags: ["Next.js", "Redis", "TypeScript"],
+      imagePath: "/images/Portfolio/Ricocapital/Ricocapital.webp",
+      gallery: [
+        "/images/Portfolio/Ricocapital/Ricocapital.webp",
+        "/images/Portfolio/Ricocapital/ricocapital(2).webp",
+        "/images/Portfolio/Ricocapital/ricocapital(3).webp",
+        "/images/Portfolio/Ricocapital/ricocapital(4).webp",
+        "/images/Portfolio/Ricocapital/ricocapital(5).webp",
+        "/images/Portfolio/Ricocapital/ricocapital-admin.webp",
+        "/images/Portfolio/Ricocapital/ricocapital-admin(1).webp",
+        "/images/Portfolio/Ricocapital/ricocapital-admin(2).webp",
+        "/images/Portfolio/Ricocapital/ricocapital-member.webp",
+        "/images/Portfolio/Ricocapital/ricocapital-member(1).webp",
+      ]
+    },
+    {
+      id: 5,
+      title: "Toko-Pinjam Platform",
+      category: "Custom System",
+      description: t.tokopinjam.description[lang],
+      longDescription: t.tokopinjam.longDescription[lang],
+      tags: ["React", "Node.js", "GraphQL"],
+      imagePath: "/images/Portfolio/Toko-Pinjam/tokopinjam.webp",
+      gallery: [
+        "/images/Portfolio/Toko-Pinjam/tokopinjam.webp",
+        "/images/Portfolio/Toko-Pinjam/tokopinjam(1).webp",
+        "/images/Portfolio/Toko-Pinjam/tokopinjam(2).webp"
+      ]
+    },
+    {
+      id: 6,
+      title: "Smart Parking Control System",
+      category: "Custom System",
+      description: t.smartparking.description[lang],
+      longDescription: t.smartparking.longDescription[lang],
+      tags: ["Vue 3", "TailwindCSS", "ChartJS"],
+      imagePath: "/images/Portfolio/Smart-Parking/SPS-admin1.webp",
+      gallery: [
+        "/images/Portfolio/Smart-Parking/SPS-admin1.webp",
+        "/images/Portfolio/Smart-Parking/SPS-admin2.webp",
+        "/images/Portfolio/Smart-Parking/SPS-admin3.webp"
+      ]
+    },
+    {
+      id: 7,
+      title: "ASR Creative House",
+      category: "Website",
+      description: t.asr.description[lang],
+      longDescription: t.asr.longDescription[lang],
+      tags: ["Next.js", "TailwindCSS", "Framer Motion"],
+      imagePath: "/images/Portfolio/ASR/asr1.webp",
+      gallery: [
+        "/images/Portfolio/ASR/asr1.webp",
+        "/images/Portfolio/ASR/asr2.webp",
+        "/images/Portfolio/ASR/asr3.webp",
+        "/images/Portfolio/ASR/asr4.webp",
+        "/images/Portfolio/ASR/asr5.webp",
+        "/images/Portfolio/ASR/asr6.webp",
+        "/images/Portfolio/ASR/asr7.webp",
+        "/images/Portfolio/ASR/asr8.webp",
+      ]
+    },
+  ];
+}
 
 type CategoryFilter = "All" | ProjectCategory;
 
-export default function Portfolio() {
+interface PortfolioProps {
+  lang: "id" | "en";
+}
+
+export default function Portfolio({ lang }: PortfolioProps) {
+  const t = translations.portfolio;
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("All");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
   const [activeImage, setActiveImage] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const categories: CategoryFilter[] = ["All", "Website", "Custom System"];
 
-  const filteredProjects = projectsData.filter(
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
+
+  const projects = getProjectsData(lang);
+
+  const filteredProjects = projects.filter(
     (project) => selectedCategory === "All" || project.category === selectedCategory
   );
 
+  const ITEMS_PER_PAGE = 6;
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+  const displayedProjects = filteredProjects.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const projectsData = getProjectsData(lang);
+  const selectedProject = selectedProjectId !== null ? projectsData.find(p => p.id === selectedProjectId) || null : null;
+
   const handleOpenModal = (project: Project) => {
-    setSelectedProject(project);
+    setSelectedProjectId(project.id);
     setActiveImage(project.gallery[0] || project.imagePath);
   };
 
@@ -143,7 +188,7 @@ export default function Portfolio() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setSelectedProject(null);
+        setSelectedProjectId(null);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -168,10 +213,10 @@ export default function Portfolio() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
             <h2 className="text-sm font-extrabold tracking-widest text-rakit-blue uppercase mb-2">
-              PORTFOLIO SHOWCASE
+              {t.label[lang]}
             </h2>
             <h3 className="text-3xl md:text-5xl font-black text-rakit-dark leading-tight">
-              Selected projects built with <span className="text-rakit-orange">precision</span>.
+              {t.headingPre[lang]}<span className="text-rakit-orange">{t.headingHighlight[lang]}</span>{t.headingPost[lang]}
             </h3>
           </div>
 
@@ -193,7 +238,7 @@ export default function Portfolio() {
                       transition={{ type: "spring", stiffness: 150, damping: 18 }}
                     />
                   )}
-                  <span className="relative z-10">{category}</span>
+                  <span className="relative z-10">{t.filters[category as keyof typeof t.filters][lang]}</span>
                 </button>
               );
             })}
@@ -203,7 +248,7 @@ export default function Portfolio() {
         {/* Project Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {displayedProjects.map((project) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -259,6 +304,54 @@ export default function Portfolio() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-12">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="w-10 h-10 rounded-full border border-rakit-dark/10 flex items-center justify-center text-rakit-dark bg-white hover:bg-rakit-dark hover:text-rakit-cream transition-all duration-300 shadow-sm cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-rakit-dark"
+              aria-label="Previous page"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-1.5 bg-rakit-dark/5 p-1 rounded-full border border-rakit-dark/10">
+              {Array.from({ length: totalPages }, (_, i) => {
+                const pageNum = i + 1;
+                const isActive = currentPage === pageNum;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`relative w-8 h-8 rounded-full text-xs font-black transition-colors duration-300 cursor-pointer ${
+                      isActive ? "text-rakit-cream" : "text-rakit-dark/45 hover:text-rakit-dark"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="active-page-tab"
+                        className="absolute inset-0 bg-rakit-orange rounded-full shadow-sm"
+                        transition={{ type: "spring", stiffness: 150, damping: 18 }}
+                      />
+                    )}
+                    <span className="relative z-10">{pageNum}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="w-10 h-10 rounded-full border border-rakit-dark/10 flex items-center justify-center text-rakit-dark bg-white hover:bg-rakit-dark hover:text-rakit-cream transition-all duration-300 shadow-sm cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-rakit-dark"
+              aria-label="Next page"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Interactive Modal Overlay */}
@@ -268,7 +361,7 @@ export default function Portfolio() {
             className="fixed inset-0 bg-rakit-dark/60 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto no-scrollbar"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
-                setSelectedProject(null);
+                setSelectedProjectId(null);
               }
             }}
           >
@@ -281,7 +374,7 @@ export default function Portfolio() {
             >
               {/* Close Button */}
               <button
-                onClick={() => setSelectedProject(null)}
+                onClick={() => setSelectedProjectId(null)}
                 className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 rounded-full border border-rakit-dark/10 flex items-center justify-center text-rakit-dark bg-white hover:bg-rakit-dark hover:text-rakit-cream transition-all duration-300 z-50 shadow-sm"
                 aria-label="Close modal"
               >

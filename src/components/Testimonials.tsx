@@ -1,6 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { translations } from "../utils/translations";
 
 interface Testimonial {
   id: number;
@@ -13,91 +14,97 @@ interface Testimonial {
   colorClass: string;
 }
 
-const row1Testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: "Rian Andrian",
-    role: "Founder",
-    company: "Soka Cafe",
-    content: "Rakit Digital transformed our cafe operations! The inventory and dynamic menu website they built is blazing fast and looks stunning.",
-    rating: 5,
-    initials: "RA",
-    colorClass: "bg-vibrant-orange/10 text-vibrant-orange",
-  },
-  {
-    id: 2,
-    name: "Rafiif Nur Tahta Bagaskara",
-    role: "Founder & CEO",
-    company: "Toko Pinjam",
-    content: "Tim berhasil membuat platform yang benar-benar membantu misi dan komunitas kami. Saat ini Tokopinjam telah digunakan oleh lebih dari 70 mahasiswa di Purwokerto dan membantu lebih dari 200 mahasiswa mendapatkan akses perlengkapan acara dengan lebih mudah. Platform ini juga mendapat liputan dari Kompas",
-    rating: 5,
-    initials: "RB",
-    colorClass: "bg-accent-blue/10 text-accent-blue",
-  },
-  {
-    id: 3,
-    name: "Budi Santoso",
-    role: "CEO",
-    company: "RentAll",
-    content: "Highly competent team! They delivered our custom scheduling and booking system 1 week ahead of schedule, completely bug-free.",
-    rating: 5,
-    initials: "BS",
-    colorClass: "bg-primary/10 text-primary",
-  },
-  {
-    id: 4,
-    name: "Riko Yoananda R.",
-    role: "Founder & CEO",
-    company: "Ricocapital",
-    content: "Website yang dibuat sangat membantu kami dalam menyampaikan materi edukasi kripto dan video pembelajaran kepada anggota. Saat ini platform telah digunakan oleh lebih dari 80 anggota, dan performa SEO yang baik membantu kami menjangkau audiens hingga ke Eropa dan Amerika Serikat.",
-    rating: 5,
-    initials: "RY",
-    colorClass: "bg-emerald-500/10 text-emerald-600",
-  },
-];
+function getRow1Testimonials(lang: "id" | "en"): Testimonial[] {
+  const tt = translations.testimonials.reviews;
+  return [
+    {
+      id: 1,
+      name: "Rian Andrian",
+      role: "Founder",
+      company: "Soka Cafe",
+      content: tt.rian[lang],
+      rating: 5,
+      initials: "RA",
+      colorClass: "bg-vibrant-orange/10 text-vibrant-orange",
+    },
+    {
+      id: 2,
+      name: "Rafiif Nur Tahta Bagaskara",
+      role: "Founder & CEO",
+      company: "Toko Pinjam",
+      content: "Tim berhasil membuat platform yang benar-benar membantu misi dan komunitas kami. Saat ini Tokopinjam telah digunakan oleh lebih dari 70 mahasiswa di Purwokerto dan membantu lebih dari 200 mahasiswa mendapatkan akses perlengkapan acara dengan lebih mudah. Platform ini juga mendapat liputan dari Kompas",
+      rating: 5,
+      initials: "RB",
+      colorClass: "bg-accent-blue/10 text-accent-blue",
+    },
+    {
+      id: 3,
+      name: "Budi Santoso",
+      role: "CEO",
+      company: "RentAll",
+      content: tt.budi[lang],
+      rating: 5,
+      initials: "BS",
+      colorClass: "bg-primary/10 text-primary",
+    },
+    {
+      id: 4,
+      name: "Riko Yoananda R.",
+      role: "Founder & CEO",
+      company: "Ricocapital",
+      content: "Website yang dibuat sangat membantu kami dalam menyampaikan materi edukasi kripto dan video pembelajaran kepada anggota. Saat ini platform telah digunakan oleh lebih dari 80 anggota, dan performa SEO yang baik membantu kami menjangkau audiens hingga ke Eropa dan Amerika Serikat.",
+      rating: 5,
+      initials: "RY",
+      colorClass: "bg-emerald-500/10 text-emerald-600",
+    },
+  ];
+}
 
-const row2Testimonials: Testimonial[] = [
-  {
-    id: 5,
-    name: "Eka Pratama",
-    role: "Founder",
-    company: "ASR Creative House",
-    content: "Kami sangat puas dengan hasil website yang dibuat oleh Rakit Digital. Selain desain yang modern dan responsif, website ini membantu meningkatkan kredibilitas bisnis kami di mata calon klien. Tim Rakit Digital juga sangat responsif dalam memberikan solusi dan masukan selama proses pengembangan.",
-    rating: 5,
-    initials: "EP",
-    colorClass: "bg-indigo-500/10 text-indigo-600",
-  },
-  {
-    id: 6,
-    name: "Sarah Croft",
-    role: "COO",
-    company: "GreenFood ID",
-    content: "Exceptional support! They are quick to respond, explain tech details in plain language, and make development fun.",
-    rating: 5,
-    initials: "SC",
-    colorClass: "bg-rose-500/10 text-rose-600",
-  },
-  {
-    id: 7,
-    name: "Fadli Karim",
-    role: "Tech Lead",
-    company: "TokoBuku",
-    content: "If you need premium frontend work with complex animations and Spring physics, look no further. The Rakit team are absolute wizards.",
-    rating: 5,
-    initials: "FK",
-    colorClass: "bg-amber-500/10 text-amber-600",
-  },
-  {
-    id: 8,
-    name: "Vina Aurelia",
-    role: "Founder",
-    company: "Lovelle Atelier",
-    content: "Website yang dibuat oleh Rakit Digital sangat membantu operasional bisnis kami sehari-hari. Mulai dari pengelolaan produk, pemesanan, hingga informasi pelanggan menjadi lebih terorganisir. Selain tampil lebih profesional, website ini juga memberikan pengalaman berbelanja yang lebih nyaman bagi pelanggan kami.",
-    rating: 5,
-    initials: "VA",
-    colorClass: "bg-purple-500/10 text-purple-600",
-  },
-];
+function getRow2Testimonials(lang: "id" | "en"): Testimonial[] {
+  const tt = translations.testimonials.reviews;
+  return [
+    {
+      id: 5,
+      name: "Eka Pratama",
+      role: "Founder",
+      company: "ASR Creative House",
+      content: "Kami sangat puas dengan hasil website yang dibuat oleh Rakit Digital. Selain desain yang modern dan responsif, website ini membantu meningkatkan kredibilitas bisnis kami di mata calon klien. Tim Rakit Digital juga sangat responsif dalam memberikan solusi dan masukan selama proses pengembangan.",
+      rating: 5,
+      initials: "EP",
+      colorClass: "bg-indigo-500/10 text-indigo-600",
+    },
+    {
+      id: 6,
+      name: "Sarah Croft",
+      role: "COO",
+      company: "GreenFood ID",
+      content: tt.sarah[lang],
+      rating: 5,
+      initials: "SC",
+      colorClass: "bg-rose-500/10 text-rose-600",
+    },
+    {
+      id: 7,
+      name: "Fadli Karim",
+      role: "Tech Lead",
+      company: "TokoBuku",
+      content: tt.fadli[lang],
+      rating: 5,
+      initials: "FK",
+      colorClass: "bg-amber-500/10 text-amber-600",
+    },
+    {
+      id: 8,
+      name: "Vina Aurelia",
+      role: "Founder",
+      company: "Lovelle Atelier",
+      content: "Website yang dibuat oleh Rakit Digital sangat membantu operasional bisnis kami sehari-hari. Mulai dari pengelolaan produk, pemesanan, hingga informasi pelanggan menjadi lebih terorganisir. Selain tampil lebih profesional, website ini juga memberikan pengalaman berbelanja yang lebih nyaman bagi pelanggan kami.",
+      rating: 5,
+      initials: "VA",
+      colorClass: "bg-purple-500/10 text-purple-600",
+    },
+  ];
+}
 
 function TestimonialCard({ review }: { review: Testimonial }) {
   return (
@@ -132,7 +139,15 @@ function TestimonialCard({ review }: { review: Testimonial }) {
   );
 }
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  lang: "id" | "en";
+}
+
+export default function Testimonials({ lang }: TestimonialsProps) {
+  const t = translations.testimonials;
+  const row1Testimonials = getRow1Testimonials(lang);
+  const row2Testimonials = getRow2Testimonials(lang);
+
   return (
     <section id="testimonials" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background radial glow */}
@@ -140,13 +155,22 @@ export default function Testimonials() {
 
       <div className="w-full max-w-6xl mx-auto mb-16 px-6 text-center">
         <h2 className="text-sm font-extrabold tracking-widest text-accent-blue uppercase mb-2">
-          CLIENT REVIEWS
+          {t.label[lang]}
         </h2>
         <h3 className="text-3xl md:text-5xl font-black text-primary leading-tight">
-          Loved by builders, trusted by <span className="text-vibrant-orange">creatives</span>.
+          {lang === "id" ? (
+            <>
+              Disukai para pembangun sistem,<br />
+              dipercaya para <span className="text-vibrant-orange">kreator</span>.
+            </>
+          ) : (
+            <>
+              {t.titlePre[lang]}<span className="text-vibrant-orange">{t.titleHighlight[lang]}</span>.
+            </>
+          )}
         </h3>
         <p className="text-primary/70 mt-4 font-semibold max-w-xl mx-auto">
-          Read what founders and engineering leads have to say about assembling products with Rakit Digital.
+          {t.description[lang]}
         </p>
       </div>
 

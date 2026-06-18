@@ -4,34 +4,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MapPin, ChevronDown, MessageSquare } from "lucide-react";
 import { Magnetic } from "./Navbar";
+import { translations } from "../utils/translations";
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-const faqData: FAQItem[] = [
-  {
-    question: "How long does the development process take?",
-    answer: "It depends on the complexity. For Landing Pages, it usually takes 5-10 working days. Company Profiles take 2-4 weeks, and Learning Management Systems (LMS) take 3-4 months.",
-  },
-  {
-    question: "Can I manage the content myself?",
-    answer: "Absolutely! We provide a user-friendly Admin Panel (CMS) so you can easily update text, images, and content without any coding knowledge.",
-  },
-  {
-    question: "What about maintenance costs?",
-    answer: "We provide free maintenance according to your package (up to 6 months). After that period, we offer affordable annual maintenance plans that cover system updates, security patches, and data backups.",
-  },
-  {
-    question: "Is the website SEO optimized?",
-    answer: "Yes, every website we build follows standard On-Page SEO guidelines to ensure your business is easily discoverable on search engines like Google.",
-  },
-  {
-    question: "What if I need revisions?",
-    answer: "We provide a revision quota based on your selected package during the development phase to ensure the design and functionality meet your expectations perfectly.",
-  },
-];
+function getFaqData(lang: "id" | "en"): FAQItem[] {
+  return translations.contact.faqs.map(faq => ({
+    question: faq.question[lang],
+    answer: faq.answer[lang]
+  }));
+}
 
 // Custom WhatsApp SVG Icon
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -40,12 +25,19 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default function ContactForm() {
+interface ContactFormProps {
+  lang: "id" | "en";
+}
+
+export default function ContactForm({ lang }: ContactFormProps) {
+  const t = translations.contact;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  const faqData = getFaqData(lang);
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
@@ -67,14 +59,14 @@ export default function ContactForm() {
 
             <div>
               <h2 className="text-sm font-extrabold tracking-widest text-vibrant-orange uppercase mb-2">
-                CONTACT US
+                {t.label[lang]}
               </h2>
               <h3 className="text-3xl md:text-4xl font-black text-cream leading-tight">
-                Ready to <br />
-                <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-8">assemble</span>?
+                {t.titlePre[lang]} <br />
+                <span className="underline decoration-vibrant-orange decoration-wavy decoration-3 underline-offset-8">{t.titleHighlight[lang]}</span>?
               </h3>
               <p className="text-cream/70 mt-6 text-sm font-semibold leading-relaxed">
-                Connect with our team to start building your custom high-performance digital blueprint today.
+                {t.description[lang]}
               </p>
             </div>
 
@@ -131,8 +123,8 @@ export default function ContactForm() {
             className="lg:col-span-7 bg-white border border-primary/10 rounded-[2.5rem] p-8 md:p-10 shadow-md flex flex-col gap-6"
           >
             <div>
-              <h4 className="font-extrabold text-lg text-accent-blue uppercase tracking-widest mb-1">FREQUENTLY ASKED QUESTIONS</h4>
-              <p className="text-primary/60 text-xs font-semibold">Got questions? We have compiled some quick answers to guide you.</p>
+              <h4 className="font-extrabold text-lg text-accent-blue uppercase tracking-widest mb-1">{t.faqLabel[lang]}</h4>
+              <p className="text-primary/60 text-xs font-semibold">{t.faqDescription[lang]}</p>
             </div>
 
             <div className="flex flex-col gap-4">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -11,6 +12,7 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const [lang, setLang] = useState<'id' | 'en'>('id');
   const { scrollYProgress } = useScroll();
 
   const bgGradient = useTransform(
@@ -31,16 +33,16 @@ export default function Home() {
       style={{ backgroundColor: bgGradient }}
       className="min-h-full flex flex-col w-full transition-colors duration-300"
     >
-      <Navbar />
+      <Navbar lang={lang} setLang={setLang} />
       <main className="flex-1 flex flex-col w-full">
-        <Hero />
-        <BentoGrid />
-        <Portfolio />
-        <Pricing />
-        <Testimonials />
-        <ContactForm />
+        <Hero lang={lang} />
+        <BentoGrid lang={lang} />
+        <Portfolio lang={lang} />
+        <Pricing lang={lang} />
+        <Testimonials lang={lang} />
+        <ContactForm lang={lang} />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </motion.div>
   );
 }

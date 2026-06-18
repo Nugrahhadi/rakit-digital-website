@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { translations } from "../utils/translations";
 
 interface MagneticProps {
   children: React.ReactNode;
@@ -50,7 +51,33 @@ export function Magnetic({ children }: MagneticProps) {
   );
 }
 
-export default function Navbar() {
+const IndonesiaFlag = () => (
+  <svg className="w-5 h-5 rounded-full overflow-hidden shadow-sm border border-black/10" viewBox="0 0 3 2">
+    <rect width="3" height="1" fill="#E21C21" />
+    <rect y="1" width="3" height="1" fill="#FFFFFF" />
+  </svg>
+);
+
+const UKFlag = () => (
+  <svg className="w-5 h-5 rounded-full overflow-hidden shadow-sm border border-black/10" viewBox="0 0 50 30">
+    <clipPath id="uk-clip">
+      <path d="M0,0 v30 h50 v-30 z"/>
+    </clipPath>
+    <g clipPath="url(#uk-clip)">
+      <path d="M0,0 L50,30 M0,30 L50,0" stroke="#fff" strokeWidth="6"/>
+      <path d="M0,0 L50,30 M0,30 L50,0" stroke="#c8102e" strokeWidth="4"/>
+      <path d="M25,0 v30 M0,15 h50" stroke="#fff" strokeWidth="10"/>
+      <path d="M25,0 v30 M0,15 h50" stroke="#c8102e" strokeWidth="6"/>
+    </g>
+  </svg>
+);
+
+interface NavbarProps {
+  lang: "id" | "en";
+  setLang: (lang: "id" | "en") => void;
+}
+
+export default function Navbar({ lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -66,11 +93,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const t = translations.navbar;
+
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: t.services[lang], href: "#services" },
+    { name: t.portfolio[lang], href: "#portfolio" },
+    { name: t.pricing[lang], href: "#pricing" },
+    { name: t.testimonials[lang], href: "#testimonials" },
   ];
 
   return (
@@ -110,14 +139,49 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button (Magnetic) */}
-          <div className="hidden md:block">
+          {/* Desktop Actions (Toggle & CTA) */}
+          <div className="hidden md:flex items-center gap-6">
+            {/* Language Toggle (Premium Flag Switch) */}
+            <div className="relative flex items-center bg-primary/5 p-1 rounded-full border border-primary/10 w-[72px] h-9">
+              {/* Sliding Background */}
+              <motion.div
+                className="absolute top-[3px] bottom-[3px] left-[3px] bg-primary rounded-full w-[30px]"
+                animate={{
+                  x: lang === "id" ? 0 : 34,
+                }}
+                transition={{ type: "spring", stiffness: 250, damping: 22 }}
+              />
+
+              {/* ID Flag Button */}
+              <button
+                onClick={() => setLang("id")}
+                className="relative z-10 w-[30px] h-[30px] flex items-center justify-center cursor-pointer focus:outline-none"
+                aria-label="Bahasa Indonesia"
+              >
+                <div className={`transition-all duration-300 ${lang === "id" ? "scale-100 opacity-100" : "scale-90 opacity-40 hover:opacity-75"}`}>
+                  <IndonesiaFlag />
+                </div>
+              </button>
+
+              {/* EN Flag Button */}
+              <button
+                onClick={() => setLang("en")}
+                className="relative z-10 w-[30px] h-[30px] flex items-center justify-center cursor-pointer focus:outline-none ml-auto"
+                aria-label="English"
+              >
+                <div className={`transition-all duration-300 ${lang === "en" ? "scale-100 opacity-100" : "scale-90 opacity-40 hover:opacity-75"}`}>
+                  <UKFlag />
+                </div>
+              </button>
+            </div>
+
+            {/* CTA Button (Magnetic) */}
             <Magnetic>
               <a
                 href="#contact"
                 className="group relative flex items-center gap-1.5 bg-primary text-cream hover:bg-accent-blue px-5 py-2.5 rounded-full font-bold text-sm overflow-hidden shadow-md transition-colors duration-300"
               >
-                <span className="relative z-10">Get in Touch</span>
+                <span className="relative z-10">{t.cta[lang]}</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 relative z-10" />
                 <span className="absolute inset-0 bg-gradient-to-r from-accent-blue to-vibrant-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
@@ -158,12 +222,46 @@ export default function Navbar() {
               ))}
             </div>
             
+            {/* Mobile Language Toggle */}
+            <div className="relative flex items-center bg-white/10 p-1 rounded-full border border-white/20 w-[72px] h-9 self-center">
+              {/* Sliding Background */}
+              <motion.div
+                className="absolute top-[3px] bottom-[3px] left-[3px] bg-cream rounded-full w-[30px]"
+                animate={{
+                  x: lang === "id" ? 0 : 34,
+                }}
+                transition={{ type: "spring", stiffness: 250, damping: 22 }}
+              />
+
+              {/* ID Flag Button */}
+              <button
+                onClick={() => setLang("id")}
+                className="relative z-10 w-[30px] h-[30px] flex items-center justify-center cursor-pointer focus:outline-none"
+                aria-label="Bahasa Indonesia"
+              >
+                <div className={`transition-all duration-300 ${lang === "id" ? "scale-100 opacity-100" : "scale-90 opacity-40 hover:opacity-75"}`}>
+                  <IndonesiaFlag />
+                </div>
+              </button>
+
+              {/* EN Flag Button */}
+              <button
+                onClick={() => setLang("en")}
+                className="relative z-10 w-[30px] h-[30px] flex items-center justify-center cursor-pointer focus:outline-none ml-auto"
+                aria-label="English"
+              >
+                <div className={`transition-all duration-300 ${lang === "en" ? "scale-100 opacity-100" : "scale-90 opacity-40 hover:opacity-75"}`}>
+                  <UKFlag />
+                </div>
+              </button>
+            </div>
+
             <a
               href="#contact"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center gap-2 bg-vibrant-orange text-cream hover:bg-cream hover:text-primary px-6 py-3 rounded-full font-bold text-base shadow-md transition-colors duration-300"
             >
-              <span>Get in Touch</span>
+              <span>{t.cta[lang]}</span>
               <ArrowUpRight className="w-5 h-5" />
             </a>
           </motion.div>
