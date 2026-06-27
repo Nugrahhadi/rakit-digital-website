@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    name: 🚀 Build App & Sync via SFTP/SSH
+    name: 🚀 Build App & Sync via SSH (SCP)
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
@@ -26,13 +26,23 @@ jobs:
     - name: 🏗️ Build Next.js Export
       run: npm run build
 
-    - name: 📂 Sync "out" Folder to Hostinger via rsync
-      uses: easingthemes/ssh-deploy@v5.1.0
+    - name: 🧹 Clean old files on Hostinger
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        REMOTE_HOST: ${{ secrets.FTP_SERVER }}    
-        REMOTE_USER: ${{ secrets.FTP_USERNAME }} 
-        REMOTE_PORT: 65002                        
-        PASSWORD: ${{ secrets.FTP_PASSWORD }}      
-        SOURCE: "out/"
-        TARGET: "/home/u424643544/domains/rakitdigital.com/public_html/" 
-        ARGS: "-rlgoDIVz --delete"
+        host: ${{ secrets.FTP_SERVER }}       
+        username: ${{ secrets.FTP_USERNAME }} 
+        password: ${{ secrets.FTP_PASSWORD }} 
+        port: 65002
+        script: |
+          rm -rf /home/u424643544/domains/rakitdigital.com/public_html/*
+
+    - name: 📂 Upload "out" Folder via SCP
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 65002
+        source: "out/*"
+        target: "/home/u424643544/domains/rakitdigital.com/public_html/" 
+        strip_components: 1
