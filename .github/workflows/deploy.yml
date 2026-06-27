@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    name: 🚀 Build App & Sync via SSH (SCP)
+    name: 🚀 Build App & Sync via FTP
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
@@ -26,23 +26,15 @@ jobs:
     - name: 🏗️ Build Next.js Export
       run: npm run build
 
-    - name: 🧹 Clean old files on Hostinger
-      uses: appleboy/ssh-action@v1.0.3
+    - name: 📂 Sync "out" Folder to Hostinger
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        host: ${{ secrets.FTP_SERVER }}       
-        username: ${{ secrets.FTP_USERNAME }} 
-        password: ${{ secrets.FTP_PASSWORD }} 
-        port: 65002
-        script: |
-          rm -rf /home/u424643544/domains/rakitdigital.com/public_html/*
-
-    - name: 📂 Upload "out" Folder via SCP
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.FTP_SERVER }}
+        server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        port: 65002
-        source: "out/*"
-        target: "/home/u424643544/domains/rakitdigital.com/public_html/" 
-        strip_components: 1
+        local-dir: ./out/ 
+        server-dir: /public_html/
+        port: 21
+        protocol: ftp
+        timeout: 180000             
+        dangerous-clean-slate: true  
