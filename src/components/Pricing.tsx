@@ -85,6 +85,12 @@ export default function Pricing({ lang }: PricingProps) {
 
   const plans = tier === "SME" ? getSmePlans(lang) : getEnterprisePlans(lang);
 
+  const handleContactClick = () => {
+    if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
+      (window as any).gtag_report_conversion();
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 px-6 bg-transparent relative overflow-hidden">
       <div className="absolute bottom-[20%] left-[-10%] w-72 h-72 rounded-full bg-vibrant-orange/5 blur-3xl pointer-events-none" />
@@ -211,6 +217,7 @@ export default function Pricing({ lang }: PricingProps) {
                       href="https://wa.me/6289502377274"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleContactClick}
                       className={`block w-fit px-8 py-3.5 rounded-full font-black text-sm transition-colors duration-300 shadow-md ${isPopular
                           ? "bg-primary text-cream hover:bg-cream hover:text-primary shadow-primary/20"
                           : "bg-vibrant-orange text-cream hover:bg-primary shadow-vibrant-orange/10"

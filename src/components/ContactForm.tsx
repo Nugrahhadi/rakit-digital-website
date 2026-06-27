@@ -39,6 +39,12 @@ export default function ContactForm({ lang }: ContactFormProps) {
 
   const faqData = getFaqData(lang);
 
+  const handleContactClick = () => {
+    if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
+      (window as any).gtag_report_conversion();
+    }
+  };
+
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
       {/* Background shape */}
@@ -76,6 +82,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                 href="https://wa.me/6289502377274"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleContactClick}
                 className="flex items-center gap-4 group"
               >
                 <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-vibrant-orange group-hover:bg-vibrant-orange group-hover:text-cream transition-colors duration-300">
@@ -87,7 +94,11 @@ export default function ContactForm({ lang }: ContactFormProps) {
                 </div>
               </a>
 
-              <a href="mailto:rakitindigitalu@gmail.com" className="flex items-center gap-4 group">
+              <a
+                href="mailto:rakitindigitalu@gmail.com"
+                onClick={handleContactClick}
+                className="flex items-center gap-4 group"
+              >
                 <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-vibrant-orange group-hover:bg-vibrant-orange group-hover:text-cream transition-colors duration-300">
                   <Mail className="w-5 h-5" />
                 </div>

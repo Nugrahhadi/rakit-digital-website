@@ -93,6 +93,21 @@ export default function RootLayout({
 
             gtag('config', 'G-0EDW4G5QVL');
             gtag('config', 'AW-18257353348');
+
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-18257353348/m5tMCPvnu8IcEIS15IFE',
+                  'value': 1.0,
+                  'currency': 'IDR',
+                  'event_callback': callback
+              });
+              return false;
+            }
           `}
         </Script>
       </body>
