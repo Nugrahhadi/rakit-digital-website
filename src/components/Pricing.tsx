@@ -113,9 +113,8 @@ export default function Pricing({ lang }: PricingProps) {
           <div className="inline-flex bg-primary/5 p-1.5 rounded-2xl border border-primary/5 mt-8">
             <button
               onClick={() => setTier("SME")}
-              className={`relative px-6 py-3 rounded-xl text-sm font-black transition-colors duration-300 ${
-                tier === "SME" ? "text-cream" : "text-primary/70 hover:text-primary"
-              }`}
+              className={`relative px-6 py-3 rounded-xl text-sm font-black transition-colors duration-300 ${tier === "SME" ? "text-cream" : "text-primary/70 hover:text-primary"
+                }`}
             >
               {tier === "SME" && (
                 <motion.span
@@ -128,9 +127,8 @@ export default function Pricing({ lang }: PricingProps) {
             </button>
             <button
               onClick={() => setTier("Enterprise")}
-              className={`relative px-6 py-3 rounded-xl text-sm font-black transition-colors duration-300 ${
-                tier === "Enterprise" ? "text-cream" : "text-primary/70 hover:text-primary"
-              }`}
+              className={`relative px-6 py-3 rounded-xl text-sm font-black transition-colors duration-300 ${tier === "Enterprise" ? "text-cream" : "text-primary/70 hover:text-primary"
+                }`}
             >
               {tier === "Enterprise" && (
                 <motion.span
@@ -155,11 +153,10 @@ export default function Pricing({ lang }: PricingProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ type: "spring", stiffness: 100, damping: 15, delay: idx * 0.1 }}
-                className={`relative flex flex-col justify-between rounded-3xl p-8 transition-all duration-300 ${
-                  isPopular
+                className={`relative flex flex-col justify-between rounded-3xl p-8 transition-all duration-300 ${isPopular
                     ? "bg-vibrant-orange text-cream shadow-2xl scale-[1.03] border-2 border-vibrant-orange z-10"
                     : "bg-white text-primary border border-primary/10 hover:border-vibrant-orange/30 shadow-md"
-                }`}
+                  }`}
               >
                 {/* Popular Floating Badge */}
                 {isPopular && (
@@ -214,11 +211,10 @@ export default function Pricing({ lang }: PricingProps) {
                       href="https://wa.me/6289502377274"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`block w-fit px-8 py-3.5 rounded-full font-black text-sm transition-colors duration-300 shadow-md ${
-                        isPopular
+                      className={`block w-fit px-8 py-3.5 rounded-full font-black text-sm transition-colors duration-300 shadow-md ${isPopular
                           ? "bg-primary text-cream hover:bg-cream hover:text-primary shadow-primary/20"
                           : "bg-vibrant-orange text-cream hover:bg-primary shadow-vibrant-orange/10"
-                      }`}
+                        }`}
                     >
                       {plan.ctaText}
                     </a>

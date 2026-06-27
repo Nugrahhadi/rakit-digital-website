@@ -14,7 +14,7 @@ export const translations = {
     titlePart4: { id: "Sistem Premium", en: "Premium Systems" },
     titlePart5: { id: "Dreams Into", en: "Digital Dreams Into" },
     description: {
-      id: "Rakit Digital adalah studio produksi digital yang kreatif, adaptif, dan penuh inovasi. Kami merakit perpaduan antara kode, desain, dan pengalaman pengguna untuk membangun aset digital premium yang siap berkembang.",
+      id: "Rakit Digital membantu merakit mimpimu menjadi perpaduan antara kode, desain, dan pengalaman pengguna untuk membangun aset digital premium yang siap berkembang.",
       en: "Rakit Digital is an attractive, cheerful, and highly capable digital production studio. We assemble code, design, and user experience to build premium digital assets."
     },
     ctaPrimary: { id: "Lihat Showcase", en: "View Showcase" },
@@ -68,7 +68,7 @@ export const translations = {
   },
   portfolio: {
     label: { id: "PORTOFOLIO TERPILIH", en: "PORTFOLIO SHOWCASE" },
-    headingPre: { id: "Kumpulan project yang dibangun dengan ", en: "Selected projects built with " },
+    headingPre: { id: "Kumpulan project yang dirakit dengan ", en: "Selected projects built with " },
     headingHighlight: { id: "presisi", en: "precision" },
     headingPost: { id: ".", en: "." },
     filters: {
@@ -237,20 +237,20 @@ export const translations = {
           { id: "Domain .com & Hosting (1 Tahun)", en: "Domain .com & hosting (1 year)" },
           { id: "Maksimal 7 Kali Revisi", en: "Up to 7 Revisions" },
         ],
-        ctaText: { id: "Hubungi untuk Penawaran", en: "Get Custom Quote" }
+        ctaText: { id: "Hubungi untuk Merakit", en: "Get Custom Quote" }
       }
     }
   },
   testimonials: {
-    label: { id: "ULASAN KLIEN", en: "CLIENT REVIEWS" },
+    label: { id: "KATA MEREKA", en: "CLIENT REVIEWS" },
     titlePre: { id: "Disukai para pembangun sistem, dipercaya para ", en: "Loved by builders, trusted by " },
-    titleHighlight: { id: "kreator", en: "creatives" },
+    titleHighlight: { id: "pemilik", en: "owners" },
     description: {
       id: "Baca pendapat para founder dan tech lead tentang merakit produk bersama Rakit Digital.",
       en: "Read what founders and engineering leads have to say about assembling products with Rakit Digital."
     },
     reviews: {
-      rian: { id: "Rakit Digital merevolusi operasional kafe kami! Website menu dinamis dan inventaris yang mereka bangun sangat cepat dan terlihat menakjubkan.", en: "Rakit Digital transformed our cafe operations! The inventory and dynamic menu website they built is blazing fast and looks stunning." },
+      rian: { id: "Rakit Digital membantu mengembangkan operasional kafe kami! Website menu dinamis dan inventaris yang mereka bangun sangat cepat dan terlihat menakjubkan.", en: "Rakit Digital helped develop our cafe's operations! The dynamic menu website and inventory they built is very fast and looks stunning." },
       budi: { id: "Tim yang sangat kompeten! Mereka menyelesaikan sistem penjadwalan dan pemesanan kustom kami 1 minggu lebih awal dari jadwal, tanpa bug sama sekali.", en: "Highly competent team! They delivered our custom scheduling and booking system 1 week ahead of schedule, completely bug-free." },
       sarah: { id: "Dukungan yang luar biasa! Mereka cepat merespons, menjelaskan detail teknologi dengan bahasa yang sederhana, dan membuat pengembangan terasa menyenangkan.", en: "Exceptional support! They are quick to respond, explain tech details in plain language, and make development fun." },
       fadli: { id: "Jika Anda membutuhkan pekerjaan frontend premium dengan animasi kompleks dan fisika Spring, tidak perlu mencari lagi. Tim Rakit adalah penyihir mutlak.", en: "If you need premium frontend work with complex animations and Spring physics, look no further. The Rakit team are absolute wizards." }

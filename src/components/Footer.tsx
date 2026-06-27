@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { translations } from "../utils/translations";
 
 interface FooterProps {
@@ -23,7 +23,7 @@ export default function Footer({ lang }: FooterProps) {
           {/* Column 1: Brand & Slogan */}
           <div className="lg:col-span-6 flex flex-col gap-5">
             <a href="#" className="flex items-center">
-              <Image
+              <ExportedImage
                 src="/images/rakit-white-logo.webp"
                 alt="Rakit Digital Logo"
                 width={140}

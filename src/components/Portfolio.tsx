@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Monitor, Cpu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { translations } from "../utils/translations";
@@ -261,7 +261,7 @@ export default function Portfolio({ lang }: PortfolioProps) {
               >
                 {/* Project Image Preview */}
                 <div className="relative w-full h-48 rounded-2xl overflow-hidden bg-gradient-to-br from-rakit-cream to-rakit-dark/5 border border-rakit-dark/5">
-                  <Image
+                  <ExportedImage
                     src={project.imagePath}
                     alt={project.title}
                     fill
@@ -393,7 +393,7 @@ export default function Portfolio({ lang }: PortfolioProps) {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0"
                     >
-                      <Image
+                      <ExportedImage
                         src={activeImage}
                         alt="Project detail image"
                         fill
@@ -416,7 +416,7 @@ export default function Portfolio({ lang }: PortfolioProps) {
                           className={`relative w-20 h-14 md:w-24 md:h-16 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all cursor-pointer ${isSelected ? "border-rakit-orange scale-95 shadow-md" : "border-transparent hover:border-rakit-blue/50"
                             }`}
                         >
-                          <Image
+                          <ExportedImage
                             src={imgUrl}
                             alt="Project thumbnail"
                             fill

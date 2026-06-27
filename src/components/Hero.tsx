@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { ArrowRight, Sparkles, Code, Layout, Rocket } from "lucide-react";
 import { Magnetic } from "./Navbar";
 import { translations } from "../utils/translations";
@@ -84,11 +84,11 @@ export default function Hero({ lang }: HeroProps) {
         className="relative z-25 hover:z-50 w-56 h-72 md:w-80 md:h-100 rounded-[2.5rem] bg-gradient-to-tr from-primary to-accent-blue p-1.5 shadow-2xl overflow-hidden cursor-default hover:rotate-[2deg] transition-all duration-300 md:-translate-x-24 -translate-x-12"
       >
         <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden bg-cream">
-          <Image
+          <ExportedImage
             src="/images/hero-agency.png"
             alt="Rakit Digital Studio Workspace"
             fill
-            priority
+            priority={true}
             className="object-cover"
             sizes="(max-w-768px) 250px, 400px"
           />
@@ -108,7 +108,7 @@ export default function Hero({ lang }: HeroProps) {
         className="absolute -top-4 right-2 md:-right-8 z-10 hover:z-50 w-36 h-48 md:w-52 md:h-64 rounded-[2rem] bg-gradient-to-tr from-accent-blue to-primary p-1.5 shadow-xl overflow-hidden cursor-default hover:rotate-[-9deg] transition-all duration-300 md:-translate-x-24"
       >
         <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden bg-cream">
-          <Image
+          <ExportedImage
             src="/images/hero-agency-2.png"
             alt="System Details UI"
             fill
@@ -128,7 +128,7 @@ export default function Hero({ lang }: HeroProps) {
         className="absolute -bottom-6 right-2 md:-right-4 z-20 hover:z-50 w-36 h-36 md:w-52 md:h-52 rounded-[1.8rem] bg-gradient-to-tr from-vibrant-orange to-amber-500 p-1.5 shadow-2xl overflow-hidden cursor-default hover:rotate-[12deg] transition-all duration-300 md:-translate-x-18 -translate-x-8"
       >
         <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-cream">
-          <Image
+          <ExportedImage
             src="/images/hero-agency-3.png"
             alt="Application Code Blueprint"
             fill

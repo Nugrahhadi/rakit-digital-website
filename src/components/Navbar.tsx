@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { translations } from "../utils/translations";
 
 interface MagneticProps {
@@ -115,12 +115,12 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
         <nav className="w-full max-w-6xl glassmorphism rounded-full px-6 py-3 flex items-center justify-between shadow-lg shadow-primary/5">
           {/* Logo */}
           <a href="#" className="flex items-center">
-            <Image
+            <ExportedImage
               src="/images/rakit-logo.webp"
               alt="Rakit Digital Logo"
               width={140}
               height={35}
-              priority
+              priority={true}
               className="h-8 w-auto object-contain"
             />
           </a>

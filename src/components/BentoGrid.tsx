@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { motion } from "framer-motion";
 import {
   GraduationCap,
@@ -71,7 +71,7 @@ export default function BentoGrid({ lang }: BentoGridProps) {
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                   </div>
                   <div className="relative w-full h-[calc(100%-1rem)]">
-                    <Image
+                    <ExportedImage
                       src="/images/Portfolio/Archipelago/archipelago.webp"
                       alt="Company Profile Showcase"
                       fill
@@ -121,13 +121,13 @@ export default function BentoGrid({ lang }: BentoGridProps) {
 
                 {/* Container Image dipaksa mengisi ruang sisa top bar secara penuh */}
                 <div className="relative w-full h-full">
-                  <Image
+                  <ExportedImage
                     src="/images/Portfolio/Ricocapital/Ricocapital.webp"
                     alt="LMS Main Interface Preview"
                     fill
                     className="object-cover object-top"
                     sizes="(max-w-1024px) 100vw, 30vw"
-                    priority
+                    priority={true}
                   />
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function BentoGrid({ lang }: BentoGridProps) {
               {/* Isometric Sliding Dashboard Screen */}
               <div className="relative w-full h-44 mt-6 overflow-visible">
                 <div className="absolute -right-4 left-4 top-4 bottom-[-40px] bg-rakit-dark rounded-t-2xl shadow-2xl transform skew-x-6 group-hover:skew-x-0 group-hover:translate-y-[-10px] transition-all duration-500 overflow-hidden border-t-4 border-x-4 border-rakit-dark">
-                  <Image
+                  <ExportedImage
                     src="/images/Portfolio/Smart-Parking/SPS-admin1.webp"
                     alt="Web App System Panel"
                     fill
@@ -194,13 +194,13 @@ export default function BentoGrid({ lang }: BentoGridProps) {
 
                   {/* Gambar Web Full Layout */}
                   <div className="relative w-full h-full">
-                    <Image
+                    <ExportedImage
                       src="/images/Portfolio/Toko-Pinjam/tokopinjam.webp"
                       alt="Commerce Platform Showcase"
                       fill
                       className="object-cover object-top"
                       sizes="(max-w-1024px) 100vw, 40vw"
-                      priority
+                      priority={true}
                     />
                   </div>
                 </div>
