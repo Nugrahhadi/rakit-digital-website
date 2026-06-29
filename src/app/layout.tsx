@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -79,12 +80,15 @@ export default function RootLayout({
       lang="en"
       className="h-full antialiased scroll-smooth"
     >
+      <GoogleTagManager gtmId="GTM-NXP7PHTG" />
       <body className="min-h-full flex flex-col bg-cream text-primary">
         {children}
+        {/* TODO: Remove during GA4-to-GTM migration phase */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-0EDW4G5QVL"
           strategy="afterInteractive"
         />
+        {/* TODO: Remove during GA4-to-GTM migration phase */}
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];

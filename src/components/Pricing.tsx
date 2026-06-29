@@ -86,9 +86,7 @@ export default function Pricing({ lang }: PricingProps) {
   const plans = tier === "SME" ? getSmePlans(lang) : getEnterprisePlans(lang);
 
   const handleContactClick = () => {
-    if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
-      (window as any).gtag_report_conversion();
-    }
+    // TODO: Kirim event conversion ke Google Tag Manager / Google Ads via dataLayer.push() jika diperlukan
   };
 
   return (
