@@ -83,37 +83,6 @@ export default function RootLayout({
       <GoogleTagManager gtmId="GTM-NXP7PHTG" />
       <body className="min-h-full flex flex-col bg-cream text-primary">
         {children}
-        {/* TODO: Remove during GA4-to-GTM migration phase */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0EDW4G5QVL"
-          strategy="afterInteractive"
-        />
-        {/* TODO: Remove during GA4-to-GTM migration phase */}
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-0EDW4G5QVL');
-            gtag('config', 'AW-18257353348');
-
-            function gtag_report_conversion(url) {
-              var callback = function () {
-                if (typeof(url) != 'undefined') {
-                  window.location = url;
-                }
-              };
-              gtag('event', 'conversion', {
-                  'send_to': 'AW-18257353348/m5tMCPvnu8IcEIS15IFE',
-                  'value': 1.0,
-                  'currency': 'IDR',
-                  'event_callback': callback
-              });
-              return false;
-            }
-          `}
-        </Script>
       </body>
     </html>
   );
